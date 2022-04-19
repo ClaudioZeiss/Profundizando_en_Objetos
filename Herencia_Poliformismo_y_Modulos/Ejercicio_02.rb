@@ -27,13 +27,13 @@ end
 
 module Alimentacion
     module Herbivoro
-        def comer
+        def comerP
             'Puedo comer plantas!'
         end
     end
     
     module Carnivoro
-        def comer
+        def comerC
             'Puedo comer carne!'
         end
     end
@@ -50,123 +50,111 @@ end
 
 
 class Ave < Animal
-    include Habilidades
-    include Alimentacion
+    include Habilidades::Volador
+    include Habilidades::Nadador
+    include Habilidades::Caminante
+    include Alimentacion::Herbivoro
 end
 
 class Mamifero < Animal
-    include Habilidades
+    include Habilidades::Nadador
+    include Habilidades::Caminante
     include Alimentacion
 end
 
 class Insecto < Animal
-    include Habilidades
-    include Alimentacion
+    include Habilidades::Volador
+    include Habilidades::Caminante
+    include Alimentacion::Herbivoro
+    include Alimentacion::Carnivoro
 end
 
 class Pinguino < Ave
-    include Caminante
-    include Nadador
-    include Carnivoro
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerP
         puts nadar
         puts sumergir
     end
 end
 
 class Paloma < Ave
-    include Caminante
-    include Volador
-    include Herbivoro
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
         puts volar
         puts aterrizar
-        puts comer
+        puts comerP
     end        
 end
 
 class Pato < Ave
-    include Caminante
-    include Volador
-    include Herbivoro
-    include Nadador
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
         puts nadar
         puts volar
         puts aterrizar
-        puts comer
+        puts comerP
     end      
 end
 
+
 class Perro < Mamifero
-    include Caminante
     include Carnivoro
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerC
     end          
 end
 
+
 class Gato < Mamifero
-    include Caminante
     include Carnivoro
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerC
     end          
 end
 
 class Vaca < Mamifero
-    include Caminante
     include Herbivoro
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerP
     end          
 end
 
+
 class Mosca < Insecto
-    include Volador
-    include Herbivoro
-    include Caminante
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerC
+        puts comerP
         puts volar
     end          
 end
 
+
 class Mariposa < Insecto
-    include Volador
-    include Herbivoro
-    include Caminante
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerP
         puts volar
     end       
 end
 
 class Abeja < Insecto
-    include Volador
-    include Herbivoro
-    include Caminante
     def initialize (nombre)
         puts "#{nombre}"
         puts caminar
-        puts comer
+        puts comerP
         puts volar
     end       
 end
@@ -184,9 +172,9 @@ Gato.new("Gato")
 print "\n"
 Vaca.new("Vaca")
 print "\n"
-Abeja.new("Abeja")
+Mosca.new("Mosca")
 print "\n"
 Mariposa.new("Mariposa")
 print "\n"
-Mosca.new("Mosca")
+Abeja.new("Abeja")
 print "\n"
